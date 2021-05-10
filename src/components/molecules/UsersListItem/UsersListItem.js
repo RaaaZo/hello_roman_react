@@ -7,7 +7,10 @@ import {
   Wrapper,
 } from './UsersListItem.styles';
 
-const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => {
+const UsersListItem = ({
+  deleteUser,
+  userData: { average, name, attendance = '0%' },
+}) => {
   return (
     <Wrapper>
       <StyledAverage value={average}>{average}</StyledAverage>
@@ -15,7 +18,7 @@ const UsersListItem = ({ userData: { average, name, attendance = '0%' } }) => {
         <StyledParagraph isBig>{name}</StyledParagraph>
         <StyledParagraph>Attendance: {attendance}</StyledParagraph>
       </StyledInnerWrapper>
-      <Button />
+      <Button onClick={() => deleteUser(name)} />
     </Wrapper>
   );
 };

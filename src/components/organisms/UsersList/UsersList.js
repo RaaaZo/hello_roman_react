@@ -1,15 +1,16 @@
 import users from 'data/users';
-import UsersListItem from 'components/UsersListItem/UsersListItem';
+import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
+import { Wrapper } from './UserList.styles';
 
 function UsersList() {
   return (
-    <div>
+    <Wrapper>
       <ul>
         {users.map((userData) => (
           <UsersListItem key={userData.name} userData={userData} />
         ))}
       </ul>
-    </div>
+    </Wrapper>
   );
 }
 

@@ -1,4 +1,4 @@
-const users = [
+export const users = [
   {
     name: 'Adam Romanski',
     attendance: '39%',
@@ -25,5 +25,3 @@ const users = [
     average: '2.6',
   },
 ];
-
-export default users;

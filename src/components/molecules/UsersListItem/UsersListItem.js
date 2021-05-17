@@ -1,4 +1,4 @@
-import Button from 'components/atoms/Button/Button';
+import Button from 'components/atoms/DeleteButton/DeleteButton';
 import PropTypes from 'prop-types';
 import {
   StyledAverage,

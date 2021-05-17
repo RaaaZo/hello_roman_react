@@ -3,16 +3,20 @@ import { StyledList } from './UsersList.styles';
 import React, { useContext } from 'react';
 import { Title } from 'components/atoms/Title/Title';
 import { UsersContext } from 'providers/UsersProvider';
+import { useStudents } from 'hooks/useStudents';
+import { useParams } from 'react-router';
 
-const UsersList = ({ users }) => {
+const UsersList = () => {
   const { deleteUser } = useContext(UsersContext);
+  const { id } = useParams();
+  const { students } = useStudents({ groupId: id });
 
   return (
     <>
       <Title>Student list</Title>
       <h1>
         <StyledList>
-          {users.map((userData) => (
+          {students.map((userData) => (
             <UsersListItem
               deleteUser={deleteUser}
               key={userData.name}

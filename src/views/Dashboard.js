@@ -1,23 +1,34 @@
-import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
-import { ViewWrapper } from 'components/molecules/ViewWrapper/ViewWrapper';
+import React from 'react';
 import UsersList from 'components/organisms/UsersList/UsersList';
-import { UserShape } from 'types';
-import { UsersContext } from 'providers/UsersProvider';
+import { Redirect, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
+import { Title } from 'components/atoms/Title/Title';
+import { useStudents } from 'hooks/useStudents';
+import { GroupWrapper, TitleWrapper, Wrapper } from 'views/Dashboard.styles';
 
 const Dashboard = () => {
-  const { users } = useContext(UsersContext);
+  const { groups } = useStudents();
+  const { id } = useParams();
+
+  if (!id && groups.length > 0) return <Redirect to={`/group/${groups[0]}`} />;
 
   return (
-    <ViewWrapper>
-      <UsersList users={users} />
-    </ViewWrapper>
+    <Wrapper>
+      <TitleWrapper>
+        <Title as="h2">Group {id}</Title>
+        <nav>
+          {groups.map((group) => (
+            <Link key={group} to={`/group/${group}`}>
+              {group}{' '}
+            </Link>
+          ))}
+        </nav>
+      </TitleWrapper>
+      <GroupWrapper>
+        <UsersList />
+      </GroupWrapper>
+    </Wrapper>
   );
-};
-
-Dashboard.propTypes = {
-  users: PropTypes.arrayOf(PropTypes.shape(UserShape)),
-  deleteUser: PropTypes.func,
 };
 
 export default Dashboard;

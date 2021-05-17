@@ -8,7 +8,7 @@ const Navigation = () => {
           Study <br /> Buddy{' '}
         </h1>
       </Logo>
-      <StyledLink exact to="/">
+      <StyledLink exact to="/group">
         Dashboard
       </StyledLink>
       <StyledLink to="/add-user">Add User</StyledLink>

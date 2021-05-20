@@ -11,7 +11,15 @@ export const UsersContext = React.createContext({
 const UsersProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get('/students')
+      .then(({ data }) => setUsers(data.students))
+      .catch((err) => console.log(err));
+  }, []);
+
   const deleteUser = (name) => {
+    console.log('dziala');
     const filteredUsers = users.filter((user) => user.name !== name);
 
     setUsers(filteredUsers);
@@ -26,13 +34,6 @@ const UsersProvider = ({ children }) => {
 
     setUsers([newUser, ...users]);
   };
-
-  useEffect(() => {
-    axios
-      .get('/students')
-      .then(({ data }) => setUsers(data.students))
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <UsersContext.Provider value={{ users, handleAddUser, deleteUser }}>
